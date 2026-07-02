@@ -61,10 +61,6 @@ export const createProduct = async (product) => {
   };
 };
 
-// export const updateProduct = async (id, updatedProduct) => {
-//   const productRef = doc(db, "productos", id);
-//   await updateDoc(productRef, updatedProduct);
-// };
 
 export const deleteProduct = async (id) => {
   const productRef = doc(productosCollection, id);
@@ -85,8 +81,6 @@ export const deleteProduct = async (id) => {
 };
 
 
-
-
 export const updateProduct = async (id, updatedProduct) => {
 
   console.log("LUCHO");
@@ -96,20 +90,12 @@ export const updateProduct = async (id, updatedProduct) => {
 
   const snapshot = await getDoc(productRef);
 
-  //console.log("snapshot.exists():", snapshot.exists());
-
   if (!snapshot.exists()) {
     return null;
   }
 
-  // const deletedProduct = {
-  //   id: snapshot.id,
-  //   ...snapshot.data(),
-  // };
-
   await updateDoc(productRef, updatedProduct);
 
-  //await deleteDoc(productRef);
   return {
     id: snapshot.id,
     ...updatedProduct,

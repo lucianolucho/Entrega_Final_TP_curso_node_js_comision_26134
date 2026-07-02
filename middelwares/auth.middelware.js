@@ -27,11 +27,4 @@ export const authenticateToken = (req, res, next) => {
 
   }
      
-    // JWT.verify(token, process.env.JWT_SECRET, (err, user) => {
-    //     if (err) {
-    //         return res.status(403).json({ message: "Token inválido" });
-    //     }
-    //     req.user = user;
-    //     next();
-    // });
 };

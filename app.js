@@ -24,26 +24,7 @@ app.use(express.json());
 // Configuración básica: Permitir todos los orígenes
 app.use(cors());
 
-// // Configuración avanzada: Permitir dominios específicos
-// const corsOptions = {
-// // Dominios permitidos
-// origin: ['https://example.com', 'https://anotherdomain.com'],
-// // Métodos HTTP permitidos
-// methods: ['GET', 'POST', 'PUT', 'DELETE'],
-// // Encabezados permitidos
-// allowedHeaders: ['Content-Type', 'Authorization'],
-// credentials: true // Permitir cookies o credenciales
-// };
-// app.use(cors(corsOptions));
 
-
-// Ruta para la página de inicio, que muestra un mensaje de bienvenida
-// app.get("/", (req, res) => {
-//   res.send(`
-//     <h1>API de Productos</h1>
-//     <p>Servidor funcionando correctamente</p>
-//   `);
-// });
 
 
 app.use('/api/products', authenticateToken , productsRouter);
