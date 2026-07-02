@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../app.js";
-
+/**/
 describe("POST /api/auth/login", () => {
   test("debe responder 401 si las credenciales son incorrectas", async () => {
     const response = await request(app).post("/api/auth/login").send({
@@ -24,3 +24,4 @@ describe("POST /api/auth/login", () => {
   });
 });
 
+/**/

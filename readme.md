@@ -1,70 +1,218 @@
 
-consigna 1:
-comandos usados:
+# API REST - Catálogo de Productos
 
-npm init -y
---------------------------------------------
-consigna 2;
-// Instala express, cors, body-parser, dotenv, firebase y jsonwebtoken
-como dependencias del proyecto.
+## Descripción
 
+Este proyecto consiste en el desarrollo de una **API REST** utilizando **Node.js** y **Express**, cuyo objetivo es gestionar un catálogo de productos almacenados en **Firebase Firestore**.
 
-npm install express
-npm install cors
-npm install body-parser
-npm install dotenv
-npm install firebase
-npm install jsonwebtoken
+La aplicación permite realizar operaciones de alta, baja, modificación y consulta de productos, implementando una arquitectura en capas que facilita el mantenimiento y la escalabilidad del código.
 
-npm install express cors body-parser dotenv firebase jsonwebtoken
+Además, incorpora autenticación mediante **JSON Web Token (JWT)** para proteger los recursos que requieren autorización.
 
-npm install -D jest supertest
----------------------------------------------------------
-consigna 3:
+---
 
+# Objetivos
 
+* Desarrollar una API REST utilizando Node.js.
+* Implementar una arquitectura en capas.
+* Gestionar productos almacenados en Firebase Firestore.
+* Proteger los endpoints mediante autenticación JWT.
+* Aplicar buenas prácticas de organización del código.
 
+---
 
+# Tecnologías utilizadas
 
+* Node.js
+* Express
+* Firebase Firestore
+* JSON Web Token (JWT)
+* Dotenv
+* Cors
+* Body Parser
 
-------------------------------------------------------------
--------------------------------------------------------------
-npm -i cors
+---
 
-import cors from "cors"
+# Estructura del proyecto
 
+```text
+├── config/
+│   └── firebase.js
+│
+├── controllers/
+│   └── productos.controller.js
+│
+├── middleware/
+│   └── auth.middleware.js
+│
+├── models/
+│   └── product.js
+│
+├── routes/
+│   ├── auth.routes.js
+│   └── products.routes.js
+│
+├── seeders/
+│   └── productos.seeder.js
+│
+├── .env
+├── index.js
+└── package.json
+```
 
-app.use(cors());
+---
 
+# Instalación
 
-/****************************************/
-// es un middleware por si no encuentra ninguna ruta   vaya a arar aca
-app.use( (req, res)=>{
-    res.status(404).json({error :  "ruta no encontrada1"})     
-});
-/******************************************
+Clonar el repositorio:
 
+```bash
+git clone <URL_DEL_REPOSITORIO>
+```
 
-/**************************/
-/**************************/
-conexion a firebase
+Ingresar al proyecto:
 
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "firebase/app";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
+```bash
+cd ENTREGA_FINAL
+```
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-        apiKey: "AIzaSyAAPBqQ42hu-S2FSo29mJMOuFtLsONggug",
-        authDomain: "proyecto-ljb108.firebaseapp.com",
-        projectId: "proyecto-ljb108",
-        storageBucket: "proyecto-ljb108.firebasestorage.app",
-        messagingSenderId: "760950298890",
-        appId: "1:760950298890:web:af57524f870558b93782f3"
-        };
+Instalar las dependencias:
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-/**************************/
-/**************************/
+```bash
+npm install
+```
+
+Ejecutar la aplicación:
+
+```bash
+npm start
+```
+
+o, si se utiliza Nodemon:
+
+```bash
+npm run dev
+```
+
+---
+
+# Variables de entorno
+
+Crear un archivo **.env** en la raíz del proyecto con las credenciales correspondientes de Firebase y la clave utilizada para generar los tokens JWT.
+
+Ejemplo:
+
+```env
+PORT=3000
+
+JWT_SECRET=mi_clave_secreta
+
+FIREBASE_API_KEY=xxxxxxxxxxxxxxxx
+FIREBASE_AUTH_DOMAIN=xxxxxxxxxxxxxxxx
+FIREBASE_PROJECT_ID=xxxxxxxxxxxxxxxx
+FIREBASE_STORAGE_BUCKET=xxxxxxxxxxxxxxxx
+FIREBASE_MESSAGING_SENDER_ID=xxxxxxxxxxxxxxxx
+FIREBASE_APP_ID=xxxxxxxxxxxxxxxx
+```
+
+---
+
+# Funcionalidades
+
+La API permite:
+
+* Obtener el listado completo de productos.
+* Consultar un producto por su identificador.
+* Crear nuevos productos.
+* Modificar productos existentes.
+* Eliminar productos.
+* Autenticar usuarios.
+* Generar tokens JWT.
+* Proteger rutas mediante middleware de autenticación.
+
+---
+
+# Endpoints disponibles
+
+## Autenticación
+
+| Método | Endpoint    | Descripción               |
+| ------ | ----------- | ------------------------- |
+| POST   | /auth/login | Autenticación del usuario |
+
+---
+
+## Productos
+
+| Método | Endpoint      | Descripción                 |
+| ------ | ------------- | --------------------------- |
+| GET    | /products     | Obtener todos los productos |
+| GET    | /products/:id | Obtener un producto por ID  |
+| POST   | /products     | Crear un producto           |
+| PUT    | /products/:id | Actualizar un producto      |
+| DELETE | /products/:id | Eliminar un producto        |
+
+---
+
+# Autenticación
+
+Las operaciones protegidas requieren enviar un **Bearer Token** en el encabezado de la petición.
+
+Ejemplo:
+
+```http
+Authorization: Bearer <TOKEN>
+```
+
+---
+
+# Base de datos
+
+Los datos son almacenados utilizando **Firebase Firestore**, una base de datos NoSQL alojada en la nube.
+
+Cada producto contiene información como:
+
+* Nombre
+* Descripción
+* Precio
+* Marca
+* Categoría
+* Stock
+
+---
+
+# Seeder
+
+El proyecto incluye un seeder que permite inicializar la colección de productos con datos de prueba.
+
+Ejemplo:
+
+```bash
+node seeders/productos.seeder.js
+```
+
+---
+
+# Pruebas
+
+Para verificar el funcionamiento de la API se utilizó Thunder Client, realizando pruebas sobre todos los endpoints implementados.
+
+---
+
+# Mejoras futuras
+
+* Validación de datos de entrada.
+* Registro de usuarios.
+* Paginación de resultados.
+* Búsquedas por nombre o categoría.
+* Filtros por precio.
+* Ordenamiento de productos.
+* Documentación mediante Swagger.
+
+---
+
+# Autor
+
+Trabajo práctico desarrollado como parte del curso de Node.js.
+
+Autor: Luciano Bellido

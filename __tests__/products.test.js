@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../app.js";
-
+/**/
 let token;
 let productId;
 
@@ -79,3 +79,4 @@ describe("CRUD /api/products", () => {
     expect(response.status).toBe(404);
   });
 });
+/**/
