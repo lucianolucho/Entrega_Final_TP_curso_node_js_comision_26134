@@ -29,6 +29,9 @@ app.use(cors());
 
 app.use('/api/products', authenticateToken , productsRouter);
 
+//por si no se requiere el login 
+//app.use('/api/products',  productsRouter);
+
 //app.use('/api/auth', authRouter);
 app.use('/auth', authRouter);
 
