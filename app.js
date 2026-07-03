@@ -24,6 +24,11 @@ app.use(express.json());
 // Configuración básica: Permitir todos los orígenes
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "Servidor funcionando correctamente",
+  });
+});
 
 
 
